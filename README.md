@@ -36,3 +36,7 @@ this is a  program whose major task is to calculate an individual’s Net Salary
 REQUIREMENT
 index.js
 salary.js
+
+Author 
+CLAIR KARANJA
+0705300162
