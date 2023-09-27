@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title> Speed Detector Calculator</title>
+</head>
+<body>
+    <h1>SPEED DETECTOR</h1>
+    <p>Enter the speed of the car (in km/h):</p>
+    <input type="number" id="speedInput" min="0">
+    <button onclick="calculateDemeritPoints()">Calculate Demerit Points</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateDemeritPoints() {
+            // Get the input value
+            const speed = parseInt(document.getElementById("speedInput").value);
+
+            // Define the speed limit and demerit points per 5 km/h over the limit
+            const speedLimit = 70;
+            const demeritPointsPer5KmhOverLimit = 1;
+
+            // Check if the speed is less than the speed limit
+            if (speed <= speedLimit) {
+                document.getElementById("result").textContent = "OK";
+            } else {
+                // Calculate demerit points
+                const demeritPoints = Math.floor((speed - speedLimit) / 5);
+
+                // Display demerit points
+                document.getElementById("result").textContent = `Points: ${demeritPoints}`;
+
+                // Check if the driver's license should be suspended
+                if (demeritPoints > 12) {
+                    document.getElementById("result").textContent = "License suspended";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

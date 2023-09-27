@@ -1,30 +1,27 @@
-function calculateGrade(mark) {
-    if (mark > 100-79) {
-        return 'A';
-    } else if (mark >= 79-60) {
-        return 'B';
-    } else if (mark >= 59-50) {
-        return 'C';
-    } else if (mark >= 49-40) {
-        return 'D';
-    } else if (mark >= 39-0){
-        return 'E';
+// Function to calculate and display the grade based on student marks
+function calculateGrade() {
+    // Get the input value
+    const marks = parseFloat(document.getElementById("marksInput").value);
+
+    // Check if the input is a valid number between 0 and 100
+    if (isNaN(marks) || marks < 0 || marks > 100) {
+        document.getElementById("gradeResult").textContent = "Invalid input. Marks should be between 0 and 100.";
+        return;
     }
-}
 
-
-function main() {
-    const input = prompt("Enter the student's mark (0-100):");
-    const mark = parseFloat(input);
-
-
-    if (!isNaN(mark) && mark >= 0 && mark <= 100) {
-        const grade = calculateGrade(mark);
-        console.log(`The student's grade is: ${grade}`);
+    // Calculate and display the grade based on the input
+    let grade = "";
+    if (marks > 79) {
+        grade = "A";
+    } else if (marks >= 60) {
+        grade = "B";
+    } else if (marks >= 50) {
+        grade = "C";
+    } else if (marks >= 40) {
+        grade = "D";
     } else {
-        console.log('Invalid input. Mark should be between 0 and 100.');
+        grade = "E";
     }
+
+    document.getElementById("gradeResult").textContent = `Grade: ${grade}`;
 }
-
-
-main();

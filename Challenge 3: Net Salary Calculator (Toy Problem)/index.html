@@ -1,5 +1,33 @@
-//Calculate NET Salary
-function calculateNetSalary() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Salary Calculator</title>
+</head>
+<body>
+    <h1>Net Salary Calculator</h1>
+    
+    <form>
+        <label for="basicSalary">Basic Salary (Ksh):</label>
+        <input type="number" id="basicSalary" placeholder="Enter basic salary" required>
+        
+        <label for="benefits">Benefits (Ksh):</label>
+        <input type="number" id="benefits" placeholder="Enter benefits" required>
+        
+        <button type="button" onclick="calculateNetSalary()">Calculate</button>
+    </form>
+    
+    <div id="results">
+        <p id="grossSalary"></p>
+        <p id="paye"></p>
+        <p id="nhif"></p>
+        <p id="nssf"></p>
+        <p id="netSalary"></p>
+    </div>
+
+    <script>
+        function calculateNetSalary() {
   // Get user inputs
   const basicSalary = parseFloat(document.getElementById("basicSalary").value);
   const benefits = parseFloat(document.getElementById("benefits").value);
@@ -75,13 +103,16 @@ function calculateNHIF(basicSalary) {
 
 // Function to calculate NSSF Deductions
 function calculateNSSF(basicSalary) {
-  const tierIRate = 0.06; // Tier I contribution rate
-  const tierIUpperLimit = 6000; // Upper limit for Tier I contributions
-  const tierIIUpperLimit = 18000; // Upper limit for Tier II contributions
-  const tierIIRate = 0.06; // Tier II contribution rate
+  const tierIRate = 0.06; 
+  const tierIUpperLimit = 6000; 
+  const tierIIUpperLimit = 18000;
+  const tierIIRate = 0.06; 
 
   const tierIContribution = Math.min(basicSalary, tierIUpperLimit) * tierIRate;
   const tierIIContribution = Math.min(basicSalary - tierIUpperLimit, tierIIUpperLimit) * tierIIRate;
 
   return tierIContribution + tierIIContribution;
 }
+    </script>
+</body>
+</html>

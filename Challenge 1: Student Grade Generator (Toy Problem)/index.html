@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grading Generator</title>
+</head>
+<body>
+    <h1>Student Grading Generator</h1>
+    <p>Enter the student's marks (between 0 and 100):</p>
+    <input type="number" id="marksInput" min="0" max="100">
+    <button onclick="calculateGrade()">Calculate Grade</button>
+    <p id="gradeResult"></p>
+
+    <script>
+        function calculateGrade() {
+            
+            const marks = parseFloat(document.getElementById("marksInput").value);
+
+            // Check if the input is a valid number between 0 and 100
+            if (isNaN(marks) || marks < 0 || marks > 100) {
+                document.getElementById("gradeResult").textContent = "Invalid input. Marks should be between 0 and 100.";
+                return;
+            }
+
+            // Calculate and display the grade based on the input
+            let grade = "";
+            if (marks > 79) {
+                grade = "A";
+            } else if (marks >= 60) {
+                grade = "B";
+            } else if (marks >= 50) {
+                grade = "C";
+            } else if (marks >= 40) {
+                grade = "D";
+            } else {
+                grade = "E";
+            }
+
+            document.getElementById("gradeResult").textContent = `Grade: ${grade}`;
+        }
+        
+    </script>
+</body>
+</html>
