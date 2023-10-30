@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import TransactionTable from './components/TransactionTable'; 
+import TransactionTable from './components/TransactionTable';
+import AddTransaction from './components/AddTransaction';
+
 
 function App() {
   // Define your state to store transaction data
@@ -7,11 +9,10 @@ function App() {
 
   // Simulated API call to fetch transaction data
   useEffect(() => {
-    // You can replace this with an actual API call
-    // For now, let's use the sample data you provided
+    
     const fetchData = async () => {
       try {
-        const response = await fetch('data.json'); // Replace with your JSON data file path
+        const response = await fetch('http://localhost:3000/transactions'); 
         const data = await response.json();
         setTransactions(data.transactions);
       } catch (error) {
@@ -22,13 +23,19 @@ function App() {
     fetchData();
   }, []);
 
+  // Function to add a new transaction to the table
+  const addTransaction = (newTransaction) => {
+    setTransactions([...transactions, newTransaction]);
+  };
+
   return (
     <div className="App">
       <h1>Transaction Table</h1>
-      <TransactionTable transactions={transactions} />
-      {/* You can add your form, search bar, and other components here */}
+      <AddTransaction onAddTransaction={addTransaction} /> {/* Render AddTransaction component */}
+      <TransactionTable transactions={transactions} /> {/* Render TransactionTable component */}
     </div>
   );
 }
 
 export default App;
+
