@@ -1,8 +1,7 @@
-// TransactionTable.js
-
 import React from 'react';
 
 const TransactionTable = ({ transactions }) => {
+
   return (
     <table className="table">
       <thead>

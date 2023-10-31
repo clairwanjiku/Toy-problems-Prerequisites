@@ -9,18 +9,15 @@ function AddTransaction({ onAddTransaction }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create a new transaction object
     const newTransaction = {
       description,
       category,
-      amount: parseFloat(amount), // Parse the amount as a float
+      amount: parseFloat(amount),
       date,
     };
 
-    // Pass the new transaction to a function for further handling (e.g., adding to the table)
     onAddTransaction(newTransaction);
 
-    // Reset the form fields
     setDescription('');
     setCategory('');
     setAmount('');
@@ -93,3 +90,4 @@ function AddTransaction({ onAddTransaction }) {
 }
 
 export default AddTransaction;
+
