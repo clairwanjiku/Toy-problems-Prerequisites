@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import BotCollection from './components/BotCollection';
+import YourBotArmy from './components/YourBotArmy';
 
-function App() {
+const App = () => {
+  const [bots, setBots] = useState([]);
+  const [army, setArmy] = useState([]);
+  const [selectedBot, setSelectedBot] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from your local server and populate the 'bots' state.
+    fetch('http://localhost:8001/bots')
+      .then((response) => response.json())
+      .then((data) => setBots(data));
+  }, []);
+
+  const enlistBot = (bot) => {
+    // Add a bot to the army
+    if (!army.find((b) => b.id === bot.id)) {
+      setArmy([...army, bot]);
+    }
+  };
+
+  const releaseBot = (bot) => {
+    // Remove a bot from the army
+    const updatedArmy = army.filter((b) => b.id !== bot.id);
+    setArmy(updatedArmy);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Bot Battlr</h1>
+      <BotCollection bots={bots} onEnlistBot={enlistBot} />
+      <YourBotArmy army={army} onReleaseBot={releaseBot} />
     </div>
   );
-}
+};
 
 export default App;
