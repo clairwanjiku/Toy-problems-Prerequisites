@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-export default function SortBar() {
+const SortBar = ({ onSort, onFilter }) => {
   return (
-    <div>SortBar</div>
-  )
-}
+    <div>
+      <button onClick={() => onSort('health')}>Sort by Health</button>
+      <button onClick={() => onSort('damage')}>Sort by Damage</button>
+      <button onClick={() => onSort('armor')}>Sort by Armor</button>
+      <button onClick={() => onFilter('Support')}>Filter Support</button>
+      <button onClick={() => onFilter('Medic')}>Filter Medic</button>
+      {/* Add more filter buttons for other classes */}
+    </div>
+  );
+};
+
+export default SortBar;
