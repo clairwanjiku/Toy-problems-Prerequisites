@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Highlight the found bot */
+.highlighted-bot {
+  background-color: rgb(55, 0, 255); /* Set the background color to blue */
+  transition: background-color 0.5s; /* Add a smooth transition effect */
+}

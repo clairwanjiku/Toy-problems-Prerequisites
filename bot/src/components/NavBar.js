@@ -1,24 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
-export default function NavBar({ bots }) {
+export default function NavBar({ onSearch, scrollToBot }) {
   const [searchText, setSearchText] = useState('');
-  const [searchedBot, setSearchedBot] = useState(null);
-  const botRef = useRef(null);
 
   const handleSearch = () => {
-    // Search for the bot by name in the 'bots' prop
-    const botFound = bots.find((bot) => bot.name.toLowerCase() === searchText.toLowerCase());
-
-    if (botFound) {
-      setSearchedBot(botFound);
-      // Scroll to the bot element
-      if (botRef.current) {
-        botRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // If bot is not found, reset the searchedBot state
-      setSearchedBot(null);
-    }
+    // Call the onSearch function with the search text
+    onSearch(searchText);
   };
 
   const handleInputChange = (event) => {
@@ -53,12 +40,6 @@ export default function NavBar({ bots }) {
           </button>
         </div>
       </div>
-      {searchedBot && (
-        <div className="searched-bot" ref={botRef}>
-          <h2>{searchedBot.name}</h2>
-          <img src={searchedBot.avatar_url} alt={`Avatar of ${searchedBot.name}`} />
-        </div>
-      )}
     </nav>
   );
 }
