@@ -14,25 +14,25 @@ const SortBar = ({ onSortChange }) => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{ height: '100%' }}>
+    <div className="d-flex flex-row justify-content-between" style={{ height: '100%' }}>
       <button
         className={`btn btn-info ${sortingOption === 'health' ? 'active' : ''}`}
         onClick={() => handleSortChange('health')}
-        style={{ margin: '5px' }}
+        style={{ margin: '2px' }}
       >
         Sort by Health
       </button>
       <button
         className={`btn btn-info ${sortingOption === 'damage' ? 'active' : ''}`}
         onClick={() => handleSortChange('damage')}
-        style={{ margin: '5px' }}
+        style={{ margin: '2px' }}
       >
         Sort by Damage
       </button>
       <button
         className={`btn btn-info ${sortingOption === 'armor' ? 'active' : ''}`}
         onClick={() => handleSortChange('armor')}
-        style={{ margin: '5px' }}
+        style={{ margin: '2px' }}
       >
         Sort by Armor
       </button>
